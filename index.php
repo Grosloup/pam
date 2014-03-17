@@ -60,7 +60,7 @@
         <div class="field">
             <label for="pjt_abs_path">Si le projet ne réside pas dans le répertoire des hôtes virtuels, indiquer ici son chemin absolu</label>
             <input type="text" name="pjt_abs_path" id="pjt_abs_path"/>
-            <div class="error-dialogue" data-target="#pjt_abspath" ng-show="pjt.abspath.error.is" ng-cloak="">
+            <div class="error-dialogue" data-target="#pjt_abs_path" ng-show="pjt.abspath.error.is" ng-cloak="">
                 <div class="squarre"></div>
                 <div class="front">
                     {{pjt.abspath.error.message}}
@@ -96,7 +96,7 @@
             <button class="btn btn-light">Créer</button> <button class="btn btn-light">Annuler</button>
         </div>
 
-        <div class="field errors"></div>
+        <div class="field error" ng-bind="appError" ng-show=" appError != ''"></div>
 
     </div>
 

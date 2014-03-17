@@ -1,3 +1,15 @@
+html{
+  ::selection{
+    background-color: $baseSelectionBgColor;
+  }
+  ::-moz-selection{
+    background-color: $baseSelectionBgColor;
+  }
+}
+
+
+
+
 html, body{
   background-color: $baseBgColor;
 }
@@ -39,6 +51,7 @@ input[type=checkbox]{
   @include vertical;
   border: 1px solid $baseBorderColor;
 }
+//////////////////////////////////////// errors ///////////////////
 
 .error-dialogue{
   background-color: $baseBorderColor;
@@ -71,7 +84,12 @@ input[type=checkbox]{
   }
 }
 
+.error{
+  padding: 10px;
+  background-color: lighten($red, 20%);
+  color: darken($red, 20%);
 
+}
 
 #sidebar{
   width: $sidebarWidth;

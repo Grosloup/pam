@@ -23,7 +23,7 @@ $baseLinkColor: #589DF6;
 $baseSelectionBgColor: $green;
 
 //////////////////////////////my vars///////////////////////////
-
+$baseSelectionBgColor: lighten($orange, 10%);
 $baseFontColor:#444;
 $baseBgColor: #f1f1f1;
 $baseFontFamily: monospace,"Consolas", "Menlo", "Courier", serif;

@@ -524,10 +524,10 @@ textarea {
 }
 
 html ::selection {
-  background-color: #7db13e;
+  background-color: #f0ab66;
 }
 html ::-moz-selection {
-  background-color: #7db13e;
+  background-color: #f0ab66;
 }
 
 body {
@@ -593,6 +593,13 @@ h6 {
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
+}
+
+html ::selection {
+  background-color: #f0ab66;
+}
+html ::-moz-selection {
+  background-color: #f0ab66;
 }
 
 html, body {
@@ -688,6 +695,12 @@ input[type=checkbox] {
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px;
+}
+
+.error {
+  padding: 10px;
+  background-color: #e78e76;
+  color: #7b2b16;
 }
 
 #sidebar {
