@@ -1,0 +1,50 @@
+@import "compass";
+@import "compass/css3/user-interface";
+@import "normalize";
+@import "mixins";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
+$numColumns: 12;
+$containerMaxWidth: 1200px;
+$colSidePadding: 5px;
+$green:#7db13e;
+$green2: #b1dd29;
+$orange:#eb9238;
+$blue:#3979a8;
+$blue2: #2873c5;
+$red:#d24925;
+$darkgrey:#293138;
+$midgrey:#565e64;
+$lightgrey:#9fa3a7;
+$baseFontColor:#555;
+$baseFontFamily: 'Open Sans', Helvetica, Arial, sans-serif;
+$baseFontSize: 18px;
+$baseLineHeight: 1.4375;
+$baseLinkColor: #589DF6;
+$baseSelectionBgColor: $green;
+
+//////////////////////////////my vars///////////////////////////
+
+$baseFontColor:#444;
+$baseBgColor: #f1f1f1;
+$baseFontFamily: monospace,"Consolas", "Menlo", "Courier", serif;
+$baseFontSize: 14px;
+$line-heigth: 1.4;
+
+$baseBorderColor: #b0b0b0;
+
+$sidebarWidth:300px;
+$sidebarBgColor: #e1e1e1;
+
+$topbarBgColor: #bababa;
+$topbarHeight: 50px;
+
+/////////// zindex ////////////
+
+$sidebarZindex:1000;
+$topbarZindex: 1010;
+$errorDialogZindex: 10000;
+/////////////////////////////////////////////////////////////////
+@import "grid";
+@import "btn";
+@import "typo";
+@import "main";

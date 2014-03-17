@@ -1,0 +1,52 @@
+
+.container{
+  width: 100%;
+  max-width: $containerMaxWidth;
+  min-width: 640px;
+  margin: 0 auto;
+}
+.row{
+  @include clearfix;
+  .col{
+    min-height: 1px;
+    padding: 0 $colSidePadding;
+    float: left;
+    @for $i from 1 through $numColumns{
+      &.col-#{$i}{
+        width: percentage($i/$numColumns);
+      }
+    }
+    .row{
+      .col{
+        &:first-child{
+          padding-left: 0;
+        }
+        &:last-child{
+          padding-right: 0;
+        }
+      }
+    }
+  }
+}
+
+@mixin gridder($numPerRow:4, $margin:2%){
+
+  width: (100% - (($numPerRow - 1) * $margin)) / $numPerRow;
+  margin-bottom: $margin;
+  &:nth-child(n){
+    margin-right: $margin;
+  }
+  &:nth-child(#{$numPerRow}n){
+    margin-right: 0;
+  }
+  display: block;
+  float: left;
+  img{
+    max-width: 100%;
+  }
+}
+@for $i from 1 through 10{
+  .w#{$i * 10}{
+    width: $i * 10%;
+  }
+}

@@ -1,0 +1,94 @@
+
+@mixin btn-animated($baseColor){
+  &.btn-animated{
+    @include text-shadow(rgba(0,0,0,0.5) 0 -1px 1px, rgba(#fff,0.4) 0 1px 1px);
+    @include box-shadow(darken($baseColor, 10%) 0 2px 0, rgba(0,0,0,0.4) 0 5px 5px);
+    @include transition(transform 0.05s);
+    @include background(linear-gradient(bottom, $baseColor, lighten($baseColor, 14%)));
+    border: 1px solid darken($baseColor, 2%);
+    &:active{
+      @include translateY(2px);
+      @include box-shadow(rgba(0,0,0,0.4) 0 1px 3px);
+    }
+  }
+}
+
+
+
+.btn{
+  border: none;
+  font-size: 100%;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  @include round(5);
+  @include vertical;
+  background-color: $midgrey;
+  color: #fff;
+  padding: 4px 8px;
+  &.btn-white{
+    background-color: #f0f0f0;
+    color: $blue2;
+    @include btn-animated(#f0f0f0);
+  }
+  &.btn-dark{
+    background-color: $darkgrey;
+    color: #fff;
+    @include btn-animated($darkgrey);
+  }
+  &.btn-light{
+    background-color: $lightgrey;
+    color: #fff;
+    @include btn-animated($lightgrey);
+  }
+  &.btn-red{
+    background-color: $red;
+    color: #fff;
+    @include btn-animated( $red);
+  }
+  &.btn-green{
+    background-color: $green;
+    color: #fff;
+    @include btn-animated($green);
+  }
+  &.btn-blue{
+    background-color: $blue2;
+    color: #fff;
+    @include btn-animated($blue2);
+  }
+  &.btn-orange{
+    background-color: $orange;
+    color: #fff;
+    @include btn-animated($orange);
+  }
+  /*&.btn-large{
+    padding: 10px 17px;
+    font-size: 120%;
+    font-weight: 700;
+  }*/
+  &.btn-large{
+    padding: 5px 20px;
+    font-size: 100%;
+    font-weight: 700;
+  }
+
+  &.btn-small{
+    padding: 2px 4px;
+    font-size: 80%;
+  }
+
+  &.btn-rounded{
+    @include round(25px);
+  }
+
+  &.btn-squarre{
+    @include round(0);
+  }
+
+  &.btn-form{
+
+    text-transform: capitalize;
+
+  }
+}

@@ -1,0 +1,111 @@
+html, body{
+  background-color: $baseBgColor;
+}
+
+.field{
+  margin-bottom: 10px;
+  position: relative;
+  &.checkbox{
+    label{
+      @include vertical;
+    }
+    input[type=checkbox]{
+      margin-bottom: 3px;
+    }
+  }
+}
+label{
+  display: block;
+  margin-bottom: 3px;
+}
+input[type=text], textarea{
+
+  font-family: inherit;
+  color: inherit;
+  font-size: inherit;
+
+  background-color: #fefefe;
+  border: 1px solid $baseBorderColor;
+  padding: 3px;
+  @include vertical;
+  width: 100%;
+
+}
+textarea{
+  height: 100px;
+  resize: vertical;
+}
+input[type=checkbox]{
+  @include vertical;
+  border: 1px solid $baseBorderColor;
+}
+
+.error-dialogue{
+  background-color: $baseBorderColor;
+  padding: 1px;
+  position: absolute;
+  min-width: 50px;
+  max-width: 400px;
+  z-index: $errorDialogZindex;
+  @include box-shadow(rgba(0,0,0,0.3) 0 0 4px);
+  @include round(3px);
+  .squarre{
+    background-color: $sidebarBgColor;
+    border: 1px solid $baseBorderColor;
+    position: absolute;
+    @include apply-origin(0 0 0, false);
+    @include transform(rotateZ(45deg));
+    width: 20px;
+    top:-13px;
+    left: 20px;
+    height: 20px;
+    z-index: $errorDialogZindex + 5;
+    @include box-shadow(rgba(0,0,0,0.3) 0 0 4px);
+  }
+  .front{
+    background-color: $sidebarBgColor;
+    position: relative;
+    z-index: $errorDialogZindex + 10;
+    padding: 10px;
+    @include round(3px);
+  }
+}
+
+
+
+#sidebar{
+  width: $sidebarWidth;
+  position: absolute;
+  top: $topbarHeight;
+  left: 0;
+  z-index: $sidebarZindex;
+  background-color: $sidebarBgColor;
+  border-right: 1px solid $baseBorderColor;
+  padding:{
+    top: 10px;
+    right: 10px;
+    bottom: 0;
+    left: 10px;
+  }
+}
+
+#topbar{
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: $topbarHeight;
+  background-color: $topbarBgColor;
+  z-index: $topbarZindex;
+  border-bottom: 1px solid $baseBorderColor;
+}
+
+#main{
+  margin-left: $sidebarWidth;
+  padding:{
+    top: $topbarHeight + 10;
+    right: 10px;
+    bottom: 0;
+    left: 10px;
+  }
+}

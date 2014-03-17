@@ -1,0 +1,47 @@
+html{
+  ::selection{
+    background-color: $baseSelectionBgColor;
+  }
+  ::-moz-selection{
+    background-color: $baseSelectionBgColor;
+  }
+}
+
+body{
+  font-family: $baseFontFamily;
+  font-size: $baseFontSize;
+  line-height: $baseLineHeight;
+  color: $baseFontColor;
+}
+
+a{
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  color: $baseLinkColor;
+  &:hover, &:active{
+    text-decoration: underline;
+  }
+}
+
+$start: 2.8rem;
+@for $i from 1 through 6{
+  h#{$i}{
+    font-weight: 700;
+    font-size: $start - ($i * 0.3);
+  }
+}
+
+.center{
+  text-align: center;
+}
+
+.justify{
+  text-align: justify;
+}
+.left{
+  float: left;
+}
+.unselectable{
+  @include user-select(none);
+}
