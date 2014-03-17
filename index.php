@@ -38,7 +38,7 @@
         <div class="field">
             <label for="pjt_name">Nom du projet qui sera le nom de serveur ServerName</label>
             <input type="text" name="pjt_name" id="pjt_name" placeholder="Mon_nouveau_projet" ng-model="pjt.name.value" ng-blur="onNameBlur()"/>
-            <div class="error-dialogue" data-target="#pjt_name" ng-show="pjt.name.error.is">
+            <div class="error-dialogue" data-target="#pjt_name" ng-show="pjt.name.error.is" ng-cloak="">
                 <div class="squarre"></div>
                 <div class="front">
                     {{pjt.name.error.message}}
@@ -49,11 +49,23 @@
         <div class="field">
             <label for="pjt_dirname">Nom du répertoire qui contiendra le projet, si celui-ci est différent du nom du projet</label>
             <input type="text" name="pjt_dirname" id="pjt_dirname"/>
+            <div class="error-dialogue" data-target="#pjt_dirname" ng-show="pjt.dirname.error.is" ng-cloak="">
+                <div class="squarre"></div>
+                <div class="front">
+                    {{pjt.dirname.error.message}}
+                </div>
+            </div>
         </div>
 
         <div class="field">
             <label for="pjt_abs_path">Si le projet ne réside pas dans le répertoire des hôtes virtuels, indiquer ici son chemin absolu</label>
             <input type="text" name="pjt_abs_path" id="pjt_abs_path"/>
+            <div class="error-dialogue" data-target="#pjt_abspath" ng-show="pjt.abspath.error.is" ng-cloak="">
+                <div class="squarre"></div>
+                <div class="front">
+                    {{pjt.abspath.error.message}}
+                </div>
+            </div>
         </div>
 
         <div class="field">
