@@ -39,6 +39,7 @@ app.controller("MainCtrl", ['$scope', 'NewProjectFct', function($scope, NewProje
         desc:{value:""}
     };
     $scope.appError = "";
+    $scope.appResult = "";
     $scope.waitingForResponse = false;
     $scope.cannotSubmit = true;
 
@@ -85,6 +86,13 @@ app.controller("MainCtrl", ['$scope', 'NewProjectFct', function($scope, NewProje
     $scope.submit = function(){
         $scope.waitingForResponse = true;
         NewProjectFct.submit($scope.pjt).success(function(datas){
+            var errors = datas.errors;
+            if(errors != ""){
+                $scope.appResult = datas.errors;
+            } else {
+                $scope.appResult = "Tout c'est bien passé. Relancez Apache !";
+            }
+            $scope.waitingForResponse = false;
 
         }).error(httpError);
     }

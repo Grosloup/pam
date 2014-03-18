@@ -25,8 +25,7 @@
     PHP - Apache - MySQL
 </div>
 <div id="sidebar">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut cupiditate dicta doloribus ipsam itaque magni nihil
-        pariatur totam voluptate voluptatum!</p>
+
 </div>
 
 <div id="main">
@@ -94,6 +93,8 @@
         <div class="field loading" ng-show="waitingForResponse" ng-cloak="">
             enregistrement en cours ...
         </div>
+
+        <div class="field result"ng-cloak="" ng-show="appResult != ''">{{appResult}}</div>
 
     </div>
 

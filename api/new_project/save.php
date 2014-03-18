@@ -10,15 +10,20 @@ if(!isset($_SERVER["HTTP_X_REQUESTED_WITH"]) || strtolower($_SERVER["HTTP_X_REQU
     die("Vous n'avez rien à faire ici");
 }
 
-if(false !== $rawDatas = file_get_contents("php://input")  && null !== $datas = json_decode($rawDatas, true)){
+$rawDatas =  file_get_contents("php://input");
+$datas = json_decode($rawDatas, true);
 
+if(false !== $rawDatas  && null !== $datas ){
+    $date = new DateTime("now", new DateTimeZone("Europe/Paris"));
+    $dateStr = $date->format("d/m/Y H:i:s");
     $dir = "";
 
     if($datas["abspath"]["value"] != ""){
+        $absPath = str_replace("\\","/", $datas["abspath"]["value"]);
         if($datas["dirname"]["value"] != ""){
-            $dir = ltrim($datas["abspath"]["value"], "/") . "/" . ltrim($datas["dirname"]["value"], "/") . "/";
+            $dir = ltrim($absPath, "/") . "/" . ltrim($datas["dirname"]["value"], "/") . "/";
         } else {
-            $dir = ltrim($datas["abspath"]["value"], "/") . "/" . ltrim($datas["name"]["value"], "/") . "/";
+            $dir = ltrim($absPath, "/") . "/" . ltrim($datas["name"]["value"], "/") . "/";
         }
     } else {
         if($datas["dirname"]["value"] != ""){
@@ -55,7 +60,7 @@ if(false !== $rawDatas = file_get_contents("php://input")  && null !== $datas = 
 
         foreach($dirs as $d){
             $d = rtrim($d, "/");
-            if(false === mkdir($dir . "/" . $d)){
+            if(false === mkdir($dir . "/" . $d, 0777, true)){
                 $dirListErrors .= "'" . $d . "' n'a pas pu être créé." . PHP_EOL;
             }
         }
@@ -63,8 +68,8 @@ if(false !== $rawDatas = file_get_contents("php://input")  && null !== $datas = 
 
     if($datas["git"]["value"] == true){
          $origin = __DIR__;
-        chdir($dir);
-        passthru("git init");
+        chdir($baseDir);
+        $tmp = exec("git init");
         chdir($origin);
     }
 
@@ -84,7 +89,9 @@ if(false !== $rawDatas = file_get_contents("php://input")  && null !== $datas = 
     $hosts = "C:/Windows/System32/drivers/etc/hosts";
     $hostsErrors = "";
     if(chmod($hosts, 0777)){
-        $str = "127.0.0.1    " . $datas["name"]["value"];
+        $str = "#################################### crée le $dateStr ##". PHP_EOL;
+        $str .= "127.0.0.1    " . $datas["name"]["value"] . PHP_EOL;
+        $str .= "########################################################". PHP_EOL;
         $content = file_get_contents($hosts);
         if( false === file_put_contents($hosts, $str, FILE_APPEND)){
             $hostsErrors .= "Le fichier hosts n'a pas pu être modifié." . PHP_EOL;
@@ -95,8 +102,9 @@ if(false !== $rawDatas = file_get_contents("php://input")  && null !== $datas = 
     }
 
     $vhosts = "H:/Apache24/conf/extra/httpd-vhosts.conf";
-    $newHost = PHP_EOL;
+    $newVHost = PHP_EOL;
     $newVHost .= <<<EOD
+#################################### crée le $dateStr ##
 <VirtualHost *:80>
     ServerName {$datas['name']['value']}
     DocumentRoot "{$dir}"
@@ -106,8 +114,9 @@ if(false !== $rawDatas = file_get_contents("php://input")  && null !== $datas = 
             Require all granted
     </Directory>
 </VirtualHost>
+#########################################################
 EOD;
-    $newHost .= PHP_EOL;
+    $newVHost .= PHP_EOL.PHP_EOL;
     $vhostError = "";
     if(false === file_put_contents($vhosts, $newVHost, FILE_APPEND)){
         $vhostError = "Le fichier httpd-vhosts.conf n'a pas été modifié" . PHP_EOL;
@@ -122,9 +131,10 @@ EOD;
         "name"=>$datas['name']['value'],
         "dir"=>$baseDir,
         "document_root"=>$dir,
+        "description"=>$datas['desc']['value'],
     ];
 
-    if(false === file_put_contents("H:/Apache24/htdocs/pam/datas/projects.json",json_encode($projectsArr))){
+    if(false === file_put_contents("H:/Apache24/htdocs/pam/datas/projects.json",json_encode($projectsArr, JSON_PRETTY_PRINT))){
         $errors .= "Le fichier project.json n'a pas été modifié";
     }
 
