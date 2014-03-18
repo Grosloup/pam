@@ -90,7 +90,14 @@ input[type=checkbox]{
   color: darken($red, 20%);
 
 }
+//////////////////////////////////////// loading ///////////////////
+.loading{
+  padding: 10px;
+  background-color: lighten($orange, 20%);
+  color: darken($orange, 20%);
+}
 
+//////////////////////////////////////// design ///////////////////
 #sidebar{
   width: $sidebarWidth;
   position: absolute;
@@ -126,4 +133,9 @@ input[type=checkbox]{
     bottom: 0;
     left: 10px;
   }
+}
+
+
+#new-project-form{
+  width: 670px;
 }

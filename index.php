@@ -33,11 +33,12 @@
 
     <h4>Création d'un nouveau projet</h4>
 
-    <div class="w30" ng-controller="MainCtrl">
+    <div id="new-project-form" ng-controller="MainCtrl">
+        <div class="field error" ng-bind="appError" ng-show=" appError != '' "></div>
 
         <div class="field">
             <label for="pjt_name">Nom du projet qui sera le nom de serveur ServerName</label>
-            <input type="text" name="pjt_name" id="pjt_name" placeholder="Mon_nouveau_projet" ng-model="pjt.name.value" ng-blur="onNameBlur()"/>
+            <input type="text" name="pjt_name" id="pjt_name" placeholder="Mon_nouveau_projet" ng-model="pjt.name.value" ng-blur="onNameBlur()" ng-focus="pjt.name.error.is = false"/>
             <div class="error-dialogue" data-target="#pjt_name" ng-show="pjt.name.error.is" ng-cloak="">
                 <div class="squarre"></div>
                 <div class="front">
@@ -47,8 +48,13 @@
         </div>
 
         <div class="field">
+            <label for="pjt_abs_path">Si le projet ne réside pas dans le répertoire des hôtes virtuels, indiquer ici son chemin absolu</label>
+            <input type="text" name="pjt_abs_path" id="pjt_abs_path" ng-model="pjt.abspath.value"/>
+        </div>
+
+        <div class="field">
             <label for="pjt_dirname">Nom du répertoire qui contiendra le projet, si celui-ci est différent du nom du projet</label>
-            <input type="text" name="pjt_dirname" id="pjt_dirname"/>
+            <input type="text" name="pjt_dirname" id="pjt_dirname" ng-model="pjt.dirname.value" ng-blur="onDirnameBlur()" ng-focus="pjt.dirname.error.is = false"/>
             <div class="error-dialogue" data-target="#pjt_dirname" ng-show="pjt.dirname.error.is" ng-cloak="">
                 <div class="squarre"></div>
                 <div class="front">
@@ -58,45 +64,36 @@
         </div>
 
         <div class="field">
-            <label for="pjt_abs_path">Si le projet ne réside pas dans le répertoire des hôtes virtuels, indiquer ici son chemin absolu</label>
-            <input type="text" name="pjt_abs_path" id="pjt_abs_path"/>
-            <div class="error-dialogue" data-target="#pjt_abs_path" ng-show="pjt.abspath.error.is" ng-cloak="">
-                <div class="squarre"></div>
-                <div class="front">
-                    {{pjt.abspath.error.message}}
-                </div>
-            </div>
-        </div>
-
-        <div class="field">
             <label for="pjt_rel_doc_root">Chemin relatif du DocumentRoot par rapport au réperoire du projet</label>
-            <input type="text" name="pjt_rel_doc_root" id="pjt_rel_doc_root" placeholder="/public"/>
+            <input type="text" name="pjt_rel_doc_root" id="pjt_rel_doc_root" placeholder="/public" ng-model="pjt.reldocroot.value"/>
         </div>
 
         <div class="field">
             <label for="pjt_dir_list">Liste des répertoires à créer, en chemin relatif par rapport au répertoire projet, séparés par des points virgules</label>
-            <input type="text" name="pjt_dir_list" id="pjt_dir_list" placeholder="/css;/js/vendor;..." />
+            <input type="text" name="pjt_dir_list" id="pjt_dir_list" placeholder="/css;/js/vendor;..." ng-model="pjt.dirlist.value"/>
         </div>
 
         <div class="field">
             <label for="pjt_dbname">Nom de la base de données associée au projet</label>
-            <input type="text" name="pjt_dbname" id="pjt_dbname" placeholder="ma_base_de_donnees" />
+            <input type="text" name="pjt_dbname" id="pjt_dbname" placeholder="ma_base_de_donnees" ng-model="pjt.dbname.value"/>
         </div>
 
         <div class="field checkbox">
-            <label for="pjt_git"><input type="checkbox" name="pjt_git" id="pjt_git"/> Initialiser git ?</label>
+            <label for="pjt_git"><input type="checkbox" name="pjt_git" id="pjt_git" ng-model="pjt.git.value"/> Initialiser git ?</label>
         </div>
 
         <div class="field">
             <label for="pjt_desc">Associer une description au projet</label>
-            <textarea name="pjt_desc" id="pjt_desc"></textarea>
+            <textarea name="pjt_desc" id="pjt_desc" ng-model="pjt.desc.value"></textarea>
         </div>
 
         <div class="field">
-            <button class="btn btn-light">Créer</button> <button class="btn btn-light">Annuler</button>
+            <button class="btn btn-light" ng-disabled="cannotSubmit" ng-click="submit()">Créer</button> <button class="btn btn-light">Annuler</button>
         </div>
 
-        <div class="field error" ng-bind="appError" ng-show=" appError != ''"></div>
+        <div class="field loading" ng-show="waitingForResponse" ng-cloak="">
+            enregistrement en cours ...
+        </div>
 
     </div>
 

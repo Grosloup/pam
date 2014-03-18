@@ -703,6 +703,12 @@ input[type=checkbox] {
   color: #7b2b16;
 }
 
+.loading {
+  padding: 10px;
+  background-color: #f4c595;
+  color: #ac5f11;
+}
+
 #sidebar {
   width: 300px;
   position: absolute;
@@ -734,4 +740,8 @@ input[type=checkbox] {
   padding-right: 10px;
   padding-bottom: 0;
   padding-left: 10px;
+}
+
+#new-project-form {
+  width: 670px;
 }
