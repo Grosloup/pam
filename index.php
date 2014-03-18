@@ -11,7 +11,7 @@
 <html lang="fr" ng-app="MainApp">
 <head>
     <meta charset="UTF-8">
-    <title>Php - Apache - Mysql</title>
+    <title>Nouveau Projet | Php - Apache - Mysql</title>
 
     <link rel="stylesheet" href="./css/master.css"/>
     <link rel="stylesheet" href="./css/font-awesome.min.css"/>
