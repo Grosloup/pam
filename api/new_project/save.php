@@ -131,7 +131,7 @@ EOD;
         "name"=>$datas['name']['value'],
         "dir"=>$baseDir,
         "document_root"=>$dir,
-        "description"=>$datas['desc']['value'],
+        ""=>$datas['desc']['value'],
     ];
 
     if(false === file_put_contents("H:/Apache24/htdocs/pam/datas/projects.json",json_encode($projectsArr, JSON_PRETTY_PRINT))){

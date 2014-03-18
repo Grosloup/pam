@@ -1,3 +1,32 @@
 {
-
+    "pjt_test_1":{
+        "name": "pjt_test_1",
+        "dir": "H:/virtualhosts/pjt_test_1",
+        "document_root":"H:/virtualhosts/pjt_test_1/public",
+        "description":"Donec luctus diam mi, id tempus sem auctor at. In id tincidunt elit. Etiam interdum quis mi eu interdum. Integer tincidunt mauris erat, vitae elementum lectus cursus at. Nullam rhoncus sit amet ligula sed consequat. Suspendisse tincidunt lorem non ligula congue accumsan. Donec dapibus sapien eget pellentesque eleifend."
+    },
+    "pjt_test_2":{
+        "name": "pjt_test_2",
+        "dir": "H:/virtualhosts/pjt_test_2",
+        "document_root":"H:/virtualhosts/pjt_test_2/public",
+        "description":"Donec luctus diam mi, id tempus sem auctor at. In id tincidunt elit. Etiam interdum quis mi eu interdum. Integer tincidunt mauris erat, vitae elementum lectus cursus at. Nullam rhoncus sit amet ligula sed consequat. Suspendisse tincidunt lorem non ligula congue accumsan. Donec dapibus sapien eget pellentesque eleifend."
+    },
+    "pjt_test_3":{
+        "name": "pjt_test_3",
+        "dir": "H:/virtualhosts/pjt_test_3",
+        "document_root":"H:/virtualhosts/pjt_test_3/public",
+        "description":"Donec luctus diam mi, id tempus sem auctor at. In id tincidunt elit. Etiam interdum quis mi eu interdum. Integer tincidunt mauris erat, vitae elementum lectus cursus at. Nullam rhoncus sit amet ligula sed consequat. Suspendisse tincidunt lorem non ligula congue accumsan. Donec dapibus sapien eget pellentesque eleifend."
+    },
+    "pjt_test_4":{
+        "name": "pjt_test_4",
+        "dir": "H:/virtualhosts/pjt_test_4",
+        "document_root":"H:/virtualhosts/pjt_test_14/public",
+        "description":"Donec luctus diam mi, id tempus sem auctor at. In id tincidunt elit. Etiam interdum quis mi eu interdum. Integer tincidunt mauris erat, vitae elementum lectus cursus at. Nullam rhoncus sit amet ligula sed consequat. Suspendisse tincidunt lorem non ligula congue accumsan. Donec dapibus sapien eget pellentesque eleifend."
+    },
+    "pjt_test_5":{
+        "name": "pjt_test_5",
+        "dir": "H:/virtualhosts/pjt_test_5",
+        "document_root":"H:/virtualhosts/pjt_test_5/public",
+        "description":"Donec luctus diam mi, id tempus sem auctor at. In id tincidunt elit. Etiam interdum quis mi eu interdum. Integer tincidunt mauris erat, vitae elementum lectus cursus at. Nullam rhoncus sit amet ligula sed consequat. Suspendisse tincidunt lorem non ligula congue accumsan. Donec dapibus sapien eget pellentesque eleifend."
+    }
 }

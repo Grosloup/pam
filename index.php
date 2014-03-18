@@ -6,12 +6,13 @@
  * Time: 23:07
  */
 
+$projects = json_decode(file_get_contents("H:/Apache24/htdocs/pam/datas/projects.json"), true);
 ?>
 <!doctype html>
 <html lang="fr" ng-app="MainApp">
 <head>
     <meta charset="UTF-8">
-    <title>Nouveau Projet | Php - Apache - Mysql</title>
+    <title>Bienvenue | Php - Apache - Mysql</title>
 
     <link rel="stylesheet" href="./css/master.css"/>
     <link rel="stylesheet" href="./css/font-awesome.min.css"/>
@@ -29,8 +30,12 @@
 </div>
 
 <div id="main">
-
-
+    <h4>Projets enregistrés</h4>
+    <?php foreach($projects as $name=>$datas): ?>
+        <h6><?php echo $name; ?></h6>
+        <p><?php echo $datas["description"]; ?></p>
+        <a href="http://<?php echo $name; ?>" class="btn btn-light">visiter</a>
+    <?php endforeach;?>
 </div>
 
 
