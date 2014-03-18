@@ -31,11 +31,17 @@ $projects = json_decode(file_get_contents("H:/Apache24/htdocs/pam/datas/projects
 
 <div id="main">
     <h4>Projets enregistrés</h4>
-    <?php foreach($projects as $name=>$datas): ?>
-        <h6><?php echo $name; ?></h6>
-        <p><?php echo $datas["description"]; ?></p>
-        <a href="http://<?php echo $name; ?>" class="btn btn-light">visiter</a>
-    <?php endforeach;?>
+
+    <div id="projets-list">
+        <?php foreach($projects as $name=>$datas): ?>
+            <div class="project">
+                <h6><?php echo $name; ?></h6>
+                <p><?php echo $datas["description"]; ?></p>
+                <p><a href="http://<?php echo $name; ?>" class="btn btn-light">visiter</a></p>
+            </div>
+        <?php endforeach;?>
+    </div>
+
 </div>
 
 

@@ -742,6 +742,20 @@ input[type=checkbox] {
   padding-left: 10px;
 }
 
-#new-project-form {
+#new-project-form, #projets-list {
   width: 670px;
+}
+
+#projets-list .project {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #b0b0b0;
+}
+#projets-list .project h6 {
+  padding: 5px;
+}
+#projets-list .project p {
+  padding: 5px;
+}
+#projets-list .project a {
+  text-decoration: none;
 }

@@ -136,6 +136,22 @@ input[type=checkbox]{
 }
 
 
-#new-project-form{
+#new-project-form, #projets-list{
   width: 670px;
+}
+#projets-list{
+  .project{
+    margin-bottom: 10px;
+    border-bottom: 1px solid $baseBorderColor;
+    h6{
+      padding: 5px;
+    }
+    p{
+      padding: 5px;
+    }
+    a{
+      text-decoration: none;
+    }
+  }
+
 }
