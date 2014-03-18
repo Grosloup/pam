@@ -27,6 +27,7 @@ if(false !== $rawDatas = file_get_contents("php://input")  && null !== $datas = 
             $dir .= "H:/virtualshosts/" . ltrim($datas["name"]["value"], "/") . "/";
         }
     }
+    $baseDir = $dir;
 
     if($datas["reldocroot"]["value"]){
         $dir .= ltrim($datas["reldocroot"]["value"], "/");
@@ -48,14 +49,14 @@ if(false !== $rawDatas = file_get_contents("php://input")  && null !== $datas = 
             die();
         }
     }
-    $dirListErrors = [];
+    $dirListErrors = "";
     if($datas["dirlist"]["value"] != ""){
         $dirs = explode(";", $datas["dirlist"]["value"]);
 
         foreach($dirs as $d){
             $d = rtrim($d, "/");
             if(false === mkdir($dir . "/" . $d)){
-                $dirListErrors[] = "'" . $d . "' n'a pas pu être créé.";
+                $dirListErrors .= "'" . $d . "' n'a pas pu être créé." . PHP_EOL;
             }
         }
     }
@@ -67,33 +68,68 @@ if(false !== $rawDatas = file_get_contents("php://input")  && null !== $datas = 
         chdir($origin);
     }
 
-    $dbErrors = [];
+    $dbErrors = "";
     if($datas["dbname"]["value"] != ""){
         try{
             $pdo = new PDO("mysql:host=localhost;port=3306;", "root", "root");
         } catch (PDOException $e){
-            $dbErrors[] = $e->getMessage();
+            $dbErrors .= $e->getMessage() . PHP_EOL;
         }
 
         if(false === $pdo->exec("CREATE DATABASE IF NOT  EXISTS `" . $datas["dbname"]["value"] . "`;")){
-            $dbErrors[] ="un problème est survenu lors de la création de la base de données";
+            $dbErrors .="un problème est survenu lors de la création de la base de données" . PHP_EOL;
         }
     }
 
     $hosts = "C:/Windows/System32/drivers/etc/hosts";
-    $hostsErrors = [];
+    $hostsErrors = "";
     if(chmod($hosts, 0777)){
         $str = "127.0.0.1    " . $datas["name"]["value"];
         $content = file_get_contents($hosts);
-        file_put_contents($hosts, $str, FILE_APPEND);
+        if( false === file_put_contents($hosts, $str, FILE_APPEND)){
+            $hostsErrors .= "Le fichier hosts n'a pas pu être modifié." . PHP_EOL;
+        }
         chmod($hosts, 0755);
     } else {
-        $hostsErrors[] = "Le fichier hosts n'a pas pu être modifié.";
+        $hostsErrors .= "Le fichier hosts n'a pas pu être modifié. Permission refusée." . PHP_EOL;
+    }
+
+    $vhosts = "H:/Apache24/conf/extra/httpd-vhosts.conf";
+    $newHost = PHP_EOL;
+    $newVHost .= <<<EOD
+<VirtualHost *:80>
+    ServerName {$datas['name']['value']}
+    DocumentRoot "{$dir}"
+    <Directory "{$dir}" >
+            Options Indexes FollowSymLinks
+            AllowOverride All
+            Require all granted
+    </Directory>
+</VirtualHost>
+EOD;
+    $newHost .= PHP_EOL;
+    $vhostError = "";
+    if(false === file_put_contents($vhosts, $newVHost, FILE_APPEND)){
+        $vhostError = "Le fichier httpd-vhosts.conf n'a pas été modifié" . PHP_EOL;
     }
 
 
 
+    $errors = $dirListErrors . $dbErrors . $hostsErrors . $vhostError;
 
+    $projectsArr = json_decode(file_get_contents("H:/Apache24/htdocs/pam/datas/projects.json"), true);
+    $projectsArr[$datas['name']['value']] = [
+        "name"=>$datas['name']['value'],
+        "dir"=>$baseDir,
+        "document_root"=>$dir,
+    ];
+
+    if(false === file_put_contents("H:/Apache24/htdocs/pam/datas/projects.json",json_encode($projectsArr))){
+        $errors .= "Le fichier project.json n'a pas été modifié";
+    }
+
+    header("Content-Type: application/json");
+    echo json_encode(["errors"=>$errors]);
 
 } else {
     header("HTTP/1.1 500 Internal Server Error");
