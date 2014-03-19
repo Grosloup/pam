@@ -27,9 +27,9 @@ if(false !== $rawDatas  && null !== $datas ){
         }
     } else {
         if($datas["dirname"]["value"] != ""){
-            $dir .= "H:/virtualshosts/" . ltrim($datas["dirname"]["value"], "/") . "/";
+            $dir .= "H:/virtualhosts/" . ltrim($datas["dirname"]["value"], "/") . "/";
         } else {
-            $dir .= "H:/virtualshosts/" . ltrim($datas["name"]["value"], "/") . "/";
+            $dir .= "H:/virtualhosts/" . ltrim($datas["name"]["value"], "/") . "/";
         }
     }
     $baseDir = $dir;

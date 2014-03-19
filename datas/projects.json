@@ -4,5 +4,11 @@
         "dir": "K:\/csslib_project\/csslib\/",
         "document_root": "K:\/csslib_project\/csslib",
         "description": "Libraire scss de base"
+    },
+    "tasks_manager": {
+        "name": "tasks_manager",
+        "dir": "H:\/virtualhosts\/tasks_manager\/",
+        "document_root": "H:\/virtualhosts\/tasks_manager",
+        "description": "tasks manager & time tracker"
     }
 }
